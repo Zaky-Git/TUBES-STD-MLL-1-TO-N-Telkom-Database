@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1672592961 source:d:\zaky\kuliah\semester 3\matkul\struktur data\tubes mll 1 to n\tubes mll 1 to n\mll.cpp
+	"mll.h"
+
+1672592967 d:\zaky\kuliah\semester 3\matkul\struktur data\tubes mll 1 to n\tubes mll 1 to n\mll.h
+	<iostream>
+
+1672592976 source:d:\zaky\kuliah\semester 3\matkul\struktur data\tubes mll 1 to n\tubes mll 1 to n\main.cpp
+	"mll.h"
+
