@@ -1,4 +1,4 @@
-#include "mll.h"
+#include "mll.h"*
 
 using namespace std;
 
@@ -73,6 +73,12 @@ int main()
     inputKelas(cariP,newKelas("TK-45-01",30));
     inputKelas(cariP,newKelas("TK-45-02",30));
 
+    cariF = findFakultas(l,"FIF");
+    cariP = findProdi(cariF,"Informatika");
+
+    inputKelas(cariP,newKelas("IF-45-01",35));
+    inputKelas(cariP,newKelas("IF-44-01",40));
+
     while (input != 0)
     {
         system("cls");
@@ -100,6 +106,9 @@ int main()
         cout << "9.  Print Kelas" << endl;
         cout << "10. Print Semua" << endl;
         cout << "11. Ubah Akreditasi" << endl;
+        cout << "12. Total Fakultas" << endl;
+        cout << "13. Total Prodi" << endl;
+        cout << "14. Total Kelas" << endl;
         cout << "0.  Keluar" << endl;
         cout << "Masukkan Inputan : ";
         cin >> input;
@@ -529,6 +538,74 @@ int main()
                 system("pause");
             }
 
+        }else if (input == 12){ //total parent
+            cout <<"Total Fakultas : " << hitungFakultas(l) << endl;
+            cout << endl;
+            system("pause");
+        }else if (input == 13){ //total child sebuah fakultas
+            string f;
+            adrFakultas cari;
+            printFakultas(l);
+            while (true){
+                cout << "Pilih Fakultas : "; cin >> f;
+                cari = findFakultas(l,f);
+                if (cari != NULL){
+                    break;
+                } else {
+                    cout << "Fakultas tidak ditemukan" << endl;
+                }
+            }
+            cout << "Total Prodi pada Fakultas " << info(cari).nama << " : " << hitungProdi(cari)<<endl;
+            cout << endl;
+            system("pause");
+        }else if (input == 14){ //total child sebuah prodi
+
+            string p, f;
+
+            printFakultas(l);
+            adrFakultas pFakultas;
+            adrProdi pProdi;
+
+            while(true)
+            {
+                cout << "Fakultas yang dipilih : ";
+                cin >> f;
+                pFakultas = findFakultas(l, f);
+                if(pFakultas != NULL)
+                {
+                    printProdi(pFakultas);
+                    while(true)
+                    {
+                        cout << "Pilih prodi di " << f << " : ";
+                        while(getline(cin, p))
+                        {
+                            if(p != "")
+                            {
+                                break;
+                            }
+                        };
+                        pProdi = findProdi(pFakultas, p);
+
+                        if(pProdi != NULL)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Prodi tidak ditemukan" << endl;
+                        }
+                    }
+                    break;
+                }
+                else
+                {
+                    cout << "Fakultas tidak ditemukan" << endl;
+                }
+            }
+
+            cout << "Total Kelas pada Prodi " << info(pProdi).nama << " : " << hitungKelas(pProdi)<<endl;
+            cout << endl;
+            system("pause");
         }
     }
 }
