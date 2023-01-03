@@ -77,3 +77,6 @@ void print(mll l);
 void printFakultas(mll l);
 void printProdi(adrFakultas p);
 void printKelas(adrProdi p);
+int hitungFakultas(mll l);
+int hitungProdi(adrFakultas pFakultas);
+int hitungKelas(adrProdi pProdi);
