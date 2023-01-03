@@ -57,7 +57,7 @@ void inputFakultas(mll &l, adrFakultas pFakultas)
 {
     if (first(l) == NULL)
     {
-        first(l) = pFakultas;
+        first(l) = pFakultas; //insert ketika kosong
     }
     else
     {
@@ -67,12 +67,12 @@ void inputFakultas(mll &l, adrFakultas pFakultas)
         {
             if (alphabetIsSmaller(info(pFakultas).nama, info(p).nama))
             {
-                if (p == first(l))
+                if (p == first(l)) //insert first
                 {
                     next(pFakultas) = p;
                     first(l) = pFakultas;
                 }
-                else
+                else //insert after
                 {
                     next(prec) = pFakultas;
                     next(pFakultas) = p;
@@ -82,7 +82,7 @@ void inputFakultas(mll &l, adrFakultas pFakultas)
             prec = p;
             p = next(p);
         }
-        next(prec) = pFakultas;
+        next(prec) = pFakultas; //insert last
     }
 }
 
@@ -90,7 +90,7 @@ void inputProdi(adrFakultas &pFakultas, adrProdi pProdi)
 {
     if (nextProdi(pFakultas) == NULL)
     {
-        nextProdi(pFakultas) = pProdi;
+        nextProdi(pFakultas) = pProdi; //insert child jika kosong
     }
     else
     {
@@ -100,12 +100,12 @@ void inputProdi(adrFakultas &pFakultas, adrProdi pProdi)
         {
             if (alphabetIsSmaller(info(pProdi).nama, info(p).nama))
             {
-                if (p == nextProdi(pFakultas))
+                if (p == nextProdi(pFakultas)) //insert first
                 {
                     next(pProdi) = p;
                     nextProdi(pFakultas) = pProdi;
                 }
-                else
+                else //insert after
                 {
                     next(prec) = pProdi;
                     next(pProdi) = p;
@@ -115,7 +115,7 @@ void inputProdi(adrFakultas &pFakultas, adrProdi pProdi)
             prec = p;
             p = next(p);
         }
-        next(prec) = pProdi;
+        next(prec) = pProdi; //inse
     }
 }
 
@@ -381,6 +381,34 @@ void printKelas(adrProdi p)
         pKelas = next(pKelas);
     }
     cout << endl;
+}
+
+int hitungFakultas(mll l){
+    int tot = 0;
+    adrFakultas p = first(l);
+    while (p != NULL){
+        tot++;
+        p = next(p);
+    }
+    return tot;
+}
+int hitungProdi(adrFakultas pFakultas){
+    int tot = 0;
+    adrProdi p = nextProdi(pFakultas);
+    while (p != NULL){
+        tot++;
+        p = next(p);
+    }
+    return tot;
+}
+int hitungKelas(adrProdi pProdi){
+    int tot = 0;
+    adrKelas p = nextKelas(pProdi);
+    while (p != NULL){
+        tot++;
+        p = next(p);
+    }
+    return tot;
 }
 
 
